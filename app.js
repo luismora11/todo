@@ -45,8 +45,11 @@ function addItem(e){
         <div class="btn-container">
             <button type="button" class="edit-btn">Edit</button>
             <button type="button" class="delete-btn">Delete</button>
-
-        </div>`
+ </div>`;
+const deleteBtn = element.querySelector('.delete-btn');
+const editBtn = element.querySelector('.edit-btn');
+deleteBtn.addEventListener('click', deleteItem);
+editBtn.addEventListener('click', editItem);
         // APPEND CHILD
         list.appendChild(element);
         // DISPLAY ALERT
@@ -100,6 +103,22 @@ container.classList.remove("show-container");
 displayAlert("Items Removed", "danger");
 setBackToDefault();
 //localStorage.removeItem('list')
+}
+
+// delete item function
+function deleteItem(e){
+   const element = e.currentTarget.parentElement.parentElement;
+   list.removeChild(element);
+
+   if(list.children.length ===0){
+      container.classList.remove("show-container");
+   }
+  
+}
+
+// edit item function
+function editItem(){
+    console.log("edit item");
 }
 
 
