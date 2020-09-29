@@ -63,7 +63,9 @@ editBtn.addEventListener('click', editItem);
 
 
     }else if(value !== '' && editFlag === true){
-        console.log('editing')
+        editElement.innerHTML = value;
+        displayAlert('value changed', 'success');
+        setBackToDefault();
     }else{
         displayAlert("Please enter value", "danger");
     }
@@ -108,17 +110,32 @@ setBackToDefault();
 // delete item function
 function deleteItem(e){
    const element = e.currentTarget.parentElement.parentElement;
+   const id = element.dataset.id;
    list.removeChild(element);
 
    if(list.children.length ===0){
       container.classList.remove("show-container");
    }
-  
+  displayAlert('item removed', 'danger');
+  setBackToDefault();
+  // remove from local storage
+  //removeFromLocalStorage(id);
 }
 
 // edit item function
-function editItem(){
-    console.log("edit item");
+function editItem(e){
+    const element = e.currentTarget.parentElement.parentElement;
+    // set edit item,
+    editElement = e.currentTarget.parentElement.previousElementSibling;
+    // set form value
+    todo.value = editElement.innerHTML;
+    editFlag = true;
+    editId = element.dataset.id;
+    submitBtn.textContent = "Edit";
+
+
+
+
 }
 
 
@@ -130,4 +147,8 @@ function editItem(){
 // LOCAL STORAGE
 function addToLocalStorage(id, value){
     console.log("added to local storage");
+}
+
+function removeFromLocalStorage(id){
+
 }
