@@ -65,7 +65,11 @@ editBtn.addEventListener('click', editItem);
     }else if(value !== '' && editFlag === true){
         editElement.innerHTML = value;
         displayAlert('value changed', 'success');
+        // edit local storage
+        editLocalStorage(editID, value);
+
         setBackToDefault();
+
     }else{
         displayAlert("Please enter value", "danger");
     }
